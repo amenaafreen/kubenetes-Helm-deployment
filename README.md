@@ -1,16 +1,16 @@
 # TASK
-Take a web application and deploy it through Kubernetes. 
+Take a web application and deploy it through Kubernetes using Helm.
 # Taking a working web application and push it on to GitHub.
 LoginWebApp
 git add .
 git commit -m “initial Commit”
 git push origin master
 GitHub Link for Project
-https://github.com/amenaafreen/kubernetesdeployment
+https://github.com/amenaafreen/kubernetes-Helm-deployment
 
 # Built with Maven
 pom.xml
-https://github.com/amenaafreen/kubernetesdeployment/blob/master/pom.xml
+https://github.com/amenaafreen/kubernetes-Helm-deployment/blob/master/pom.xml
 
 # Docketrfile
 Write a dockerfile for the application, create the image and push it on to docker hub.
@@ -18,13 +18,12 @@ docker image build -t amenaafreen93/webapp:1.0 .
 docker login (validates the credentials of dockerhub to push the content)
 docker image push amenaafreen93/webapp:1.0
 
-https://github.com/amenaafreen/kubernetesdeployment/blob/master/Dockerfile
+https://github.com/amenaafreen/kubernete-helm-deployment/blob/master/Dockerfile
 
 # Kubernetes Manifest for Front End
-First creating a service with the NodePort: 30003 (which is the cluster wide pode and will be able to access the application on this port.
+First creating a service with the NodePort: 30008 (which is the cluster wide pode and will be able to access the application on this port.
 A deployment resource is used to deploy the pod which has the application running as a container. Just creating one replica.
 The image amenaafreen93/webapp:1.0 is pulled from the DockerHub
-https://github.com/amenaafreen/kubernetesdeployment/blob/master/webdeploy.yml
 
 # Kubernetes Manifest for Back End (MySQL deployment)
 Creating a service named mysqldb for linking the MySQL with the front end
@@ -33,16 +32,15 @@ There are multiple ways of doing it, I have used the ConfigMap resource.
 According to MySQL Docker Image, the part that is relevant to data initialization on container satrt-up is to ensure all the initialization fies are mount to the container’s /docker-entrypoint-initdb.d folder
 For it, we can define the initial data in a ConfigMap, and Mount the corresponding volume in the pod.
 MySQL deployment file
-https://github.com/amenaafreen/kubernetesdeployment/blob/master/mysqldeployment.yml
 
 
  
 # JENKINS
-Create a seed Job s Maven Project named kubedeployment
+Create a seed Job s Maven Project named deploy_job
 Provide the github link for the source code
 In the build → provide the job DSL by selecting look on file system (web.groovy).
 ## Job DSL Script
-https://github.com/amenaafreen/kubernetesdeployment/blob/master/deploydsl.groovy
+https://github.com/amenaafreen/kubernetes-Helm-deployment/blob/master/deploydsl.groovy
 
 ## Writing a configure block for deploying artifacts to Jfrog Artifactory
 
