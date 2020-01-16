@@ -24,7 +24,7 @@ folder(basePath) {
                kubectl get deploy -l app=webapp &&\
                kubectl get pods -l app=webapp &&\
                kubectl get svc -l app=webapp &&\
-               kubectl get configmaps -l app=webapp &&\
+               kubectl get configmaps &&\
                sleep 10s &&\
                echo "APP URL" &&\
                curl -Is http://localhost:30008/LoginWebApp/""")
