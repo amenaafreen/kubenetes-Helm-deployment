@@ -28,7 +28,6 @@ folder(basePath) {
                sleep 10s &&\
                echo "APP URL" &&\
                curl -Is http://localhost:30008/LoginWebApp/""")
-       
      }
      
      postBuildSteps{
