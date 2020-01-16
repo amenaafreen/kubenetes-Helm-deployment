@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: webapp
+    labels:
+       app: webapp
+spec:
+     replicas: 1
+     selector:
+          matchLabels:
+              app: webapp
+              tier: frontend
+     template:
+            metadata:
+                labels:
+                   app: webapp
+                   tier: frontend
+            spec:
+               containers:
+               - name: web-app
+                 image: amenaafreen93/webapp:1.0
+                 imagePullPolicy: Never
+                 ports:
+                 - containerPort: 80
+                   name: web-app

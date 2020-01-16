@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+      name: mysqldb
+spec:
+      selector:
+        matchLabels:
+          app: webapp
+          tier: mysql
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+           labels:
+              app: webapp
+              tier: mysql
+        spec:
+           containers:
+           - image: mysql:5.6
+             name: mysqldb
+             env:
+             - name: MYSQL_ROOT_PASSWORD
+               value: welcome123
+             - name: MYSQL_DATABASE
+               value: mysql_db                
+             - name: MYSQL_USER
+               value: root
+             args: ["--default-authentication-plugin=mysql_native_password"]
+             ports:
+             - containerPort: 3306
+               name: mysqldb
+             volumeMounts:
+             - name: mysql-initdb
+               mountPath: /docker-entrypoint-initdb.d
+           volumes:
+           - name: mysql-initdb
+             configMap:
+                  name: mysql-initdb-config

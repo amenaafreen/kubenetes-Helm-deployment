@@ -1,0 +1,21 @@
+# macOS
+*.DS_Store
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+
+# Eclipse
+*.classpath
+*.project
+*.settings
+/bin
+
+# Maven
+target/
