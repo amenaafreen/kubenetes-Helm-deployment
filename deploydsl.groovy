@@ -1,5 +1,5 @@
 String basePath = 'helm'
-String gitRepository = 'amenaafreen/kubernetes-Helm-deployment'
+String gitRepository = 'amenaafreen/kubenetes-Helm-deployment'
 
 folder(basePath) {
     description('Folder containing all jobs for folder')
