@@ -1,10 +1,10 @@
-String basePath = 'jobfolder1'
-String gitRepository = 'amenaafreen/kubernetesdeployment'
+String basePath = 'helm'
+String gitRepository = 'amenaafreen/kubernetes-Helm-deployment'
 
 folder(basePath) {
     description('Folder containing all jobs for folder')
 }
-   mavenJob("$basePath/maven_job") {
+   mavenJob("$basePath/deploy_job") {
    description('Build the  Project: ' + gitRepository)
     scm {
         github(gitRepository, 'master')
@@ -20,14 +20,14 @@ folder(basePath) {
 }
      postBuildSteps{
 
-     shell ("""kubectl apply -f webdeploy.yml &&\
-               kubectl apply -f mysqldeployment.yml &&\
-               kubectl get deploy &&\
-               kubectl get pods &&\
-               kubectl get svc &&\
+     shell ("""helm install webapp &&\
+               kubectl get deploy -l app=webapp &&\
+               kubectl get pods -l app=webapp &&\
+               kubectl get svc -l app=webapp &&\
+               kubectl get configmaps -l app=webapp &&\
                sleep 10s &&\
                echo "APP URL" &&\
-               curl -Is http://localhost:30003/LoginWebApp/""")
+               curl -Is http://localhost:30008/LoginWebApp/""")
        
      }
      
