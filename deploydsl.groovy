@@ -21,9 +21,9 @@ folder(basePath) {
      postBuildSteps{
 
      shell ("""helm install webapp &&\
-               kubectl get deploy -l app=webapp &&\
-               kubectl get pods -l app=webapp &&\
-               kubectl get svc -l app=webapp &&\
+               kubectl get svc -l app=web &&\
+               kubectl get deploy -l app=web &&\
+               kubectl get pods -l app=web &&\
                kubectl get configmaps &&\
                sleep 10s &&\
                echo "APP URL" &&\
